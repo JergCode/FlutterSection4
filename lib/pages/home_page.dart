@@ -14,10 +14,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-        id: '1', title: 'New Shoes', amount: 59.99, date: DateTime.now()),
-    Transaction(id: '2', title: 'Sandwich', amount: 2.49, date: DateTime.now()),
-    Transaction(id: '3', title: 'Meal', amount: 9.99, date: DateTime.now())
+    // Transaction(
+    //     id: '1', title: 'New Shoes', amount: 59.99, date: DateTime.now()),
+    // Transaction(id: '2', title: 'Sandwich', amount: 2.49, date: DateTime.now()),
+    // Transaction(id: '3', title: 'Meal', amount: 9.99, date: DateTime.now())
   ];
 
   _addTranaction(String title, String amount) {
@@ -67,6 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        highlightElevation: 5,
+        backgroundColor: Theme.of(context).primaryColor,
         child: Icon(Icons.add),
         onPressed: () => _showAddNewTransaction(context),
       ),

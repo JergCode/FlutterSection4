@@ -9,7 +9,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Widgets Demo',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
+        accentColor: Colors.indigo,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                // fontFamily: 'Quicksand',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  // fontFamily: 'Quicksand',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
       ),
       home: MyHomePage(title: 'Widgets Demo App'),
     );

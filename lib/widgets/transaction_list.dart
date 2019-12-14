@@ -11,68 +11,85 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
-      child: ListView.builder(
-        itemBuilder: (contex, index) {
-          return Card(
-            elevation: 5,
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 100,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Colors.red,
-                    width: 2,
-                  )),
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Text(
-                    ('\$ ${_userTransactions[index].amount.toStringAsFixed(2)}'),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      child: _userTransactions.isNotEmpty
+          ? ListView.builder(
+              itemBuilder: (contex, index) {
+                return Card(
+                  elevation: 5,
+                  color: Colors.white,
+                  child: Row(
                     children: <Widget>[
                       Container(
+                        width: 100,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
+                        )),
                         margin:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         child: Text(
-                          _userTransactions[index].title,
+                          ('\$ ${_userTransactions[index].amount.toStringAsFixed(2)}'),
                           style: TextStyle(
-                            fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 20,
                           ),
                         ),
                       ),
                       Container(
                         margin:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        child: Text(
-                          DateFormat('yyyy - MMM - dd')
-                              .format(_userTransactions[index].date),
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              child: Text(
+                                _userTransactions[index].title,
+                                style: Theme.of(context).textTheme.title,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              child: Text(
+                                DateFormat('yyyy - MMM - dd')
+                                    .format(_userTransactions[index].date),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
-                )
+                );
+              },
+              itemCount: _userTransactions.length,
+            )
+          : Column(
+              children: <Widget>[
+                Text(
+                  'Nothing to show',
+                  style: Theme.of(context).textTheme.title,
+                ),
+                Container(
+                  height: 200,
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ],
             ),
-          );
-        },
-        itemCount: _userTransactions.length,
-      ),
     );
   }
 }
